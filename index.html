@@ -1,489 +1,169 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>七喵的博客</title><meta name="author" content="michelmine1"><meta name="copyright" content="michelmine1"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="七喵的博客">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="og:site_name" content="七喵的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:author" content="michelmine1">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "七喵的博客",
+  "alternateName": [
+    "example.com"
+  ],
+  "url": "http://example.com/"
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
   
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
   
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
-
-<meta name="generator" content="Hexo 7.3.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '七喵的博客',
+  isHighlightShrink: true,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">七喵的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">七喵的博客</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%B8%89%E7%AB%A0/" title="三级数据库第三章">三级数据库第三章</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-09-06T14:32:57.000Z" title="发表于 2025-09-06 22:32:57">2025-09-06</time></span></div><div class="content">三级数据库第三章——数据库结构设计一、对模式进行分解</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="三级数据库第二章">三级数据库第二章</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-09-06T14:32:12.000Z" title="发表于 2025-09-06 22:32:12">2025-09-06</time></span></div><div class="content">三级数据库 第二章——需求分析一、DBAS系统规划与分析阶段 系统规划与定义（任务陈述、确定任务目标、确定范围和边界、确定用户视图） 可行性分析（技术可行性、经济可行性、操作可行性、开发方案选择） 项目规划（项目团队、项目环境、项目活动、成本预算、进度计划）  二、IDEF0（ICAM DEFinition Method活动模型）由箭头和活动组成 来源于结构化分析与技术设计的一套标准，这些标准包含多种层次的图形语言。   输入（input）箭头表示完成特定活动所需的数据，置于矩形框的左侧  输出（output）箭头说明由活动产生的结果及信息，置于矩形框的右侧  控制（control）箭头描述了影响这个活动执行的事件或约束条件，置于矩形框的上方  机制（mechanisms）箭头表示实施该活动的物理手段或完成活动需要的资源（计算机系统、人或组织），置于矩形框的下方 例子：    三、数据库物理设计目的：将数据的逻辑描述转换为实现技术规范，其目标是设计数据存储方案，以便提供足够好的性能并确保数据库的完整性、安全性和可恢复性。 在数据库操作中，为了有效保证并发读取数据的正确性，提出事务...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%B8%80%E7%AB%A0/" title="三级数据库第一章">三级数据库第一章</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-09-06T14:29:29.000Z" title="发表于 2025-09-06 22:29:29">2025-09-06</time></span></div><div class="content">三级数据库技术1.数据库的三级模式结构和二层映像功能提供了数据的逻辑独立性和物理独立性，其中外模式&#x2F;模式映像提供逻辑独立性，模式&#x2F;内模式提供物理独立性。   内模式（最低层）：反映了数据在计算机物理结构中的实际存储形式。内模式也称存储模式或物理模式，它是数据物理结构和存储结构的描述，是数据在数据库内部的表示方式。并且一个数据库只有一个内模式。 模式（中层）：反映了设计者的数据全局逻辑要求。模式也称逻辑模式，是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公共数据视图。它是数据库系统模式结构的中间层，不涉及数据的物理存储细节和硬件环境，与具体的应用和所使用的开发工具及高级程序设计语言无关。 外模式（最外层）：反映了用户对数据的要求。外模式也称子模式或用户模式，它是数据库用户（包括应用程序员和最终用户）看见和使用的局部数据的逻辑结构和特征的描述，是数据库用户的视图，是与某一应用有关的数据的逻辑表示。外模式是模式的子集，一个数据库可以有多个外模式。  2.概念数据模型：是数据库设计人员在设计的初始阶段摆脱计算机系统和DBMS的具体技术问题，集中精力分析数据以及...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/09/06/hello-world/" title="Hello World">Hello World</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-09-06T06:57:09.350Z" title="发表于 2025-09-06 14:57:09">2025-09-06</time></span></div><div class="content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;  More info: Writing Run server1$ hexo server  More info: Server Generate static files1$ hexo generate  More info: Generating Deploy to remote sites1$ hexo deploy  More info: Deployment </div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">michelmine1</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%B8%89%E7%AB%A0/" title="三级数据库第三章">三级数据库第三章</a><time datetime="2025-09-06T14:32:57.000Z" title="发表于 2025-09-06 22:32:57">2025-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="三级数据库第二章">三级数据库第二章</a><time datetime="2025-09-06T14:32:12.000Z" title="发表于 2025-09-06 22:32:12">2025-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%B8%80%E7%AB%A0/" title="三级数据库第一章">三级数据库第一章</a><time datetime="2025-09-06T14:29:29.000Z" title="发表于 2025-09-06 22:29:29">2025-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/06/hello-world/" title="Hello World">Hello World</a><time datetime="2025-09-06T06:57:09.350Z" title="发表于 2025-09-06 14:57:09">2025-09-06</time></div></div></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
       
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
   
-    <article id="post-三级数据库第三章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%B8%89%E7%AB%A0/" class="article-date">
-  <time class="dt-published" datetime="2025-09-06T14:32:57.000Z" itemprop="datePublished">2025-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%B8%89%E7%AB%A0/">三级数据库第三章</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+    <ul class="card-archive-list">
       
-        <h1 id="三级数据库第三章——数据库结构设计"><a href="#三级数据库第三章——数据库结构设计" class="headerlink" title="三级数据库第三章——数据库结构设计"></a>三级数据库第三章——数据库结构设计</h1><h4 id="一、对模式进行分解"><a href="#一、对模式进行分解" class="headerlink" title="一、对模式进行分解"></a>一、对模式进行分解</h4>
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/09/">
+            <span class="card-archive-list-date">
+              九月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%B8%89%E7%AB%A0/" data-id="cmf8d68k70000ig78c3uh5wvk" data-title="三级数据库第三章" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-三级数据库第二章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%BA%8C%E7%AB%A0/" class="article-date">
-  <time class="dt-published" datetime="2025-09-06T14:32:12.000Z" itemprop="datePublished">2025-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%BA%8C%E7%AB%A0/">三级数据库第二章</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="三级数据库-第二章——需求分析"><a href="#三级数据库-第二章——需求分析" class="headerlink" title="三级数据库 第二章——需求分析"></a>三级数据库 第二章——需求分析</h1><h4 id="一、DBAS系统规划与分析阶段"><a href="#一、DBAS系统规划与分析阶段" class="headerlink" title="一、DBAS系统规划与分析阶段"></a>一、DBAS系统规划与分析阶段</h4><ol>
-<li>系统规划与定义（任务陈述、确定任务目标、确定范围和边界、确定用户视图）</li>
-<li>可行性分析（技术可行性、经济可行性、操作可行性、开发方案选择）</li>
-<li>项目规划（项目团队、项目环境、项目活动、成本预算、进度计划）</li>
-</ol>
-<h4 id="二、IDEF0（ICAM-DEFinition-Method活动模型）"><a href="#二、IDEF0（ICAM-DEFinition-Method活动模型）" class="headerlink" title="二、IDEF0（ICAM DEFinition Method活动模型）"></a>二、IDEF0（ICAM DEFinition Method活动模型）</h4><p>由箭头和活动组成</p>
-<p>来源于结构化分析与技术设计的一套标准，这些标准包含多种层次的图形语言。</p>
-<p><img src="file:///D:/未来教育考试系统V4.0/data/SJKJS/images/797af416102e61e1674f527c6aad38ff.png" alt="img"></p>
-<ul>
-<li><p>输入（input）箭头表示完成特定活动所需的数据，置于矩形框的左侧</p>
-</li>
-<li><p>输出（output）箭头说明由活动产生的结果及信息，置于矩形框的右侧</p>
-</li>
-<li><p>控制（control）箭头描述了影响这个活动执行的事件或约束条件，置于矩形框的上方</p>
-</li>
-<li><p>机制（mechanisms）箭头表示实施该活动的物理手段或完成活动需要的资源（计算机系统、人或组织），置于矩形框的下方</p>
-<p>例子：</p>
-<p><img src="C:\Users\qi103\Documents\数据库\微信截图_20250906140129.png" alt="微信截图_20250906140129"></p>
-</li>
-</ul>
-<h4 id="三、数据库物理设计"><a href="#三、数据库物理设计" class="headerlink" title="三、数据库物理设计"></a>三、数据库物理设计</h4><p>目的：将数据的逻辑描述转换为实现技术规范，其目标是设计数据存储方案，以便提供足够好的性能并确保数据库的完整性、安全性和可恢复性。</p>
-<p>在数据库操作中，为了有效保证并发读取数据的正确性，提出事务隔离级别。</p>
-<h4 id="四、数据库建模"><a href="#四、数据库建模" class="headerlink" title="四、数据库建模"></a>四、数据库建模</h4><p>应用系统需求建模：DFD、IDEF0、UML</p>
-<p>数据建模：IDEF1X（侧重分析、抽象和概括应用领域中的数据需求）</p>
-<h4 id="五、DFD（Data-Flow-Diagram）数据流图方法"><a href="#五、DFD（Data-Flow-Diagram）数据流图方法" class="headerlink" title="五、DFD（Data Flow Diagram）数据流图方法"></a>五、DFD（Data Flow Diagram）数据流图方法</h4><p>由四种基本元素（模型对象）组成：<strong>数据流、处理（至少有一个输入流和一个输出流）、数据存储和外部项</strong></p>
-<p>DFD建模方法的核心是数据流，它能精确地在逻辑上描述系统的功能、输入、输出和数据存储等，从而摆脱了其物理内容。</p>
-<p>特性：</p>
-<ul>
-<li><p>抽象性：在DFD中具体的组织机构、工作场所、物质流等都已去掉。只剩下信息和数据存储、流动、使用以及加工的情况。所以描述的是抽象出来的数据。</p>
-</li>
-<li><p>概括性：它把系统对各种业务的处理过程联系起来考虑，形成一个总体，可反映出数据流之间的概括情况。</p>
-<p><img src="https://pic1.zhimg.com/70/v2-d98da72abced65284063b262e0cfa1f1_1440w.avis?source=172ae18b&biz_tag=Post"></p>
-</li>
-</ul>
-<p>例子：</p>
-<p><img src="https://pic1.zhimg.com/v2-6a83a1d56e68f8a583bce8a02dd6553e_1440w.jpg"></p>
-<h4 id="六、需求分析过程"><a href="#六、需求分析过程" class="headerlink" title="六、需求分析过程"></a>六、需求分析过程</h4><p>包括标识问题、建立需求模型（DFD、IDEF0）、描述需求、确认需求</p>
-<h4 id="七、索引"><a href="#七、索引" class="headerlink" title="七、索引"></a>七、索引</h4><ul>
-<li>我们可以为表或视图创建唯一索引。</li>
-<li>唯一索引不允许两行具有相同的索引键值。</li>
-<li>一个表或视图只允许同时有一个聚集索引。</li>
-<li>如果频繁地对数据进行增加、删除和更改操作，则系统hi花费很多时间来维护索引，这回降低数据的插入和修改效率。</li>
-<li>存储索引需要额外的空间，这增加了数据库的空间开销。</li>
-</ul>
-<h4 id="八、需求分析"><a href="#八、需求分析" class="headerlink" title="八、需求分析"></a>八、需求分析</h4><p>需求分析主要包括数据需求分析、数据处理需求分析、功能需求分析（数据处理需求分析与业务规则需求分析）、性能需求分析和其他需求分析：</p>
-<p>①数据处理需求分析：从对数据组织与存储的设计角度，辨识应用领域所管理的各类数据项和数据结构，与数据处理需求分析结果一起，组成数据字典，形成 “数据规范说明书”。<br>②功能需求分析：功能需求分析主要针对 DBAS 应具有的功能进行分析，是 DBAS 需求分析的核心环节，总体上可分为数据处理需求分析与业务规则需求分析。数据处理需求分析从数据访问和处理的角度，明确对各数据项所需要进行的数据访问操作。在系统规划与分析阶段，DBAS 开发者已经明确了各类用户视图。因此可根据需求分析阶段对各视图出发，针对每个用户视图进行数据处理需求分析，然后汇总各个视图的分析结果得到对系统的完整分析结果。故选择 A 项。<br>③性能需求分析：性能需求则描述了系统应当做到什么程度，分析 DBAS 应具有的性能指标。<br>④其他需求分析包括：存储需求（存储需求分析是指估计 DBAS 系统需要的数据存储量，如 DB 所存储的数据总量）、安全性需求等（主要用于数据库安全设计，避免被非法使用和攻击）。</p>
-<h4 id="九、IDEF1X建模方法"><a href="#九、IDEF1X建模方法" class="headerlink" title="九、IDEF1X建模方法"></a>九、IDEF1X建模方法</h4><p>在此方法中，所有实体集间的联系都必须用确定联系来描述，不允许出现不确定联系，多对多为非确定联系，非确定联系需要分解为若干个一对多的联系。</p>
-<p><img src="https://i-blog.csdnimg.cn/blog_migrate/417a5f5f490d3911746041dcc4aa288e.png#pic_center"></p>
-<h4 id="十、数据字典"><a href="#十、数据字典" class="headerlink" title="十、数据字典"></a>十、数据字典</h4><p>数据字典是对系统中各项数据描述的集合，是进行详细的数据收集和数据分析所获得的的主要成果。</p>
-<p>数据字典在数据库设计中占有很重要的地位，通常包括：数据项、数据结构、数据流、数据存储和处理五个部分。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%BA%8C%E7%AB%A0/" data-id="cmf8d5c09000040786ft97gsg" data-title="三级数据库第二章" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-三级数据库第一章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%B8%80%E7%AB%A0/" class="article-date">
-  <time class="dt-published" datetime="2025-09-06T14:29:29.000Z" itemprop="datePublished">2025-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%B8%80%E7%AB%A0/">三级数据库第一章</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="三级数据库技术"><a href="#三级数据库技术" class="headerlink" title="三级数据库技术"></a>三级数据库技术</h1><h4 id="1-数据库的三级模式结构和二层映像功能"><a href="#1-数据库的三级模式结构和二层映像功能" class="headerlink" title="1.数据库的三级模式结构和二层映像功能"></a>1.数据库的三级模式结构和二层映像功能</h4><p>提供了数据的逻辑独立性和物理独立性，其中<strong>外模式&#x2F;模式映像提供逻辑独立性，模式&#x2F;内模式提供物理独立性</strong>。</p>
-<p><img src="C:\Users\qi103\Documents\数据库\QQ20250905-123757.png"></p>
-<ul>
-<li>内模式（最低层）：反映了数据在计算机物理结构中的实际存储形式。内模式也称存储模式或物理模式，它是数据物理结构和存储结构的描述，是数据在数据库内部的表示方式。并且一个数据库只有一个内模式。</li>
-<li>模式（中层）：反映了设计者的数据全局逻辑要求。模式也称逻辑模式，是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公共数据视图。它是数据库系统模式结构的中间层，不涉及数据的物理存储细节和硬件环境，与具体的应用和所使用的开发工具及高级程序设计语言无关。</li>
-<li>外模式（最外层）：反映了用户对数据的要求。外模式也称子模式或用户模式，它是数据库用户（包括应用程序员和最终用户）看见和使用的局部数据的逻辑结构和特征的描述，是数据库用户的视图，是与某一应用有关的数据的逻辑表示。外模式是模式的子集，一个数据库可以有多个外模式。</li>
-</ul>
-<h4 id="2-概念数据模型"><a href="#2-概念数据模型" class="headerlink" title="2.概念数据模型"></a>2.概念数据模型</h4><p>：是数据库设计人员在设计的初始阶段摆脱计算机系统和DBMS的具体技术问题，集中精力<strong>分析数据以及数据之间的联系等</strong>，与具体的数据库管理系统无关。</p>
-<h4 id="3-数据字典"><a href="#3-数据字典" class="headerlink" title="3.数据字典"></a>3.数据字典</h4><p>：对数据的数据项、数据结构、数据流、数据存储、处理逻辑、外部实体等进行定义和描述，其目的是对数据流程图中的各个元素做出详细的说明，一般由数据库管理系统本身管理和维护。</p>
-<p><img src="https://bkimg.cdn.bcebos.com/pic/e824b899a9014c086ad31289017b02087bf4f435?x-bce-process=image/format,f_auto/watermark,image_d2F0ZXIvYmFpa2UyNzI,g_7,xp_5,yp_5,P_20/resize,m_lfit,limit_1,h_1080"></p>
-<h4 id="4-数据库应用系统逻辑设计设计阶段的内容分为三部分"><a href="#4-数据库应用系统逻辑设计设计阶段的内容分为三部分" class="headerlink" title="4.数据库应用系统逻辑设计设计阶段的内容分为三部分"></a>4.数据库应用系统逻辑设计设计阶段的内容分为三部分</h4><p>：数据库逻辑结构设计、数据库事物概要设计、应用程序概要设计。</p>
-<h4 id="5-物理设计阶段的主要活动"><a href="#5-物理设计阶段的主要活动" class="headerlink" title="5.物理设计阶段的主要活动"></a>5.物理设计阶段的主要活动</h4><p>：确定存储结构、存取路径的选择和调整、确定数据存放位置和确定存储分配。</p>
-<h4 id="6-软件开发模型"><a href="#6-软件开发模型" class="headerlink" title="6.软件开发模型"></a>6.软件开发模型</h4><p>（1）瀑布模型</p>
-<p>按工序将问题化简，将功能的实现与设计分开，便于分工协作，即采用结构化的分析与设计方法将逻辑实现与物理实现分开。将软件生命周期划分为<strong>制定计划、需求分析、软件设计、程序编写、软件测试和运行维护</strong>等六个基本活动，并且规定了它们自上而下、相互衔接的固定次序。</p>
-<p><img src="https://i-blog.csdnimg.cn/blog_migrate/1387b695d15b1dd041102d991c4d141f.png"></p>
-<p>基于严格的、明确的需求作为软件开发基础的软件开发模型</p>
-<p>（2）快速原型模型</p>
-<p>增量模型的另一种形式；在开发真实系统之前，构造一个原型，在该原型的基础上，逐渐完成整个系统的开发工作。</p>
-<p><img src="https://i-blog.csdnimg.cn/blog_migrate/cacce13b309dca981c1578c611188c0f.png"></p>
-<p>（3）螺旋模型</p>
-<p>螺旋模型基本做法是在“瀑布模型”的每一个开发阶段前引入一个非常严格的风险识别、风险分析和风险控制，它把软件项目分解成一个个小项目。每个小项目都标识一个或多个主要风险，直到所有的主要风险因素都被确定。<img src="https://i-blog.csdnimg.cn/blog_migrate/964878d1e28d292e9cae4e893f706fb7.png"></p>
-<p>螺旋模型把软件开发的全过程划分为四个阶段，也称为四个象限。</p>
-<p>象限 1 是风险评估，其目标是识别和评估风险。</p>
-<p>象限 2 是项目规划，其任务是确定系统功能和性能目标，选择可行的实施方案。</p>
-<p>象限 3 是用户评估，这个阶段标识评价和实现结果。</p>
-<p>象限 4 是工程实现，这个阶段的目标是通过实施活动将软件需求转化为软件产品。</p>
-<h4 id="7-数据库应用系统的开发活动中——系统规划和定义"><a href="#7-数据库应用系统的开发活动中——系统规划和定义" class="headerlink" title="7.数据库应用系统的开发活动中——系统规划和定义"></a>7.数据库应用系统的开发活动中——系统规划和定义</h4><p>具体内容包括：任务陈述、确定任务目标、确定系统范围和边界、确定用户视图。</p>
-<h4 id="8-数据库应用系统的需求分析"><a href="#8-数据库应用系统的需求分析" class="headerlink" title="8.数据库应用系统的需求分析"></a>8.数据库应用系统的需求分析<a id="needanalyze"></a></h4><h5 id="（1）数据需求分析"><a href="#（1）数据需求分析" class="headerlink" title="（1）数据需求分析"></a>（1）数据需求分析</h5><h5 id="（2）功能需求分析"><a href="#（2）功能需求分析" class="headerlink" title="（2）功能需求分析"></a>（2）功能需求分析</h5><ul>
-<li>​	数据处理需求分析</li>
-<li>​	业务规划需求分析</li>
-</ul>
-<h5 id="（3）性能需求分析"><a href="#（3）性能需求分析" class="headerlink" title="（3）性能需求分析"></a>（3）性能需求分析</h5><ul>
-<li>​	数据操作&#x2F;访问响应时间：从提交请求到返回结果的时间；</li>
-<li>​	系统吞吐量：指系统在单位时间内所完成的事务或查询的数量，单位为 TPS；</li>
-<li>​	允许并发访问的最大用户数：在保证响应时间的前提下，系统最多允许多少用户同时访问数据库；</li>
-<li>​	每TPS 代价值，用于衡量系统性价（性能价格）比的指标</li>
-</ul>
-<h5 id="（4）其他需求分析"><a href="#（4）其他需求分析" class="headerlink" title="（4）其他需求分析"></a>（4）其他需求分析</h5><ul>
-<li>​	存储需求分析</li>
-<li>​	安全需求分析</li>
-<li>​	备份</li>
-<li>​	恢复需求分析</li>
-</ul>
-<h4 id="9-数据库物理设计（还有概念设计、逻辑设计两个步骤）"><a href="#9-数据库物理设计（还有概念设计、逻辑设计两个步骤）" class="headerlink" title="9.数据库物理设计（还有概念设计、逻辑设计两个步骤）"></a>9.数据库物理设计（还有概念设计<a href="#conceptualdesign"></a>、逻辑设计两个步骤）</h4><p>包括：数据库逻辑模式描述、文件组织与选取（为表设计索引、设计数据区分方案等）、数据分布设计（设计数据分布策略等）、确定系统配置、物理模式评估。</p>
-<h4 id="10-数据需求可以表示为事务规范"><a href="#10-数据需求可以表示为事务规范" class="headerlink" title="10.数据需求可以表示为事务规范"></a>10.数据需求可以表示为事务规范</h4><p>包括：事务名称、事务描述、事务所访问的数据项、事务用户。</p>
-<h4 id="11-系统规划与定义"><a href="#11-系统规划与定义" class="headerlink" title="11.系统规划与定义"></a>11.系统规划与定义</h4><p>包括：任务陈述、确定任务目标、确定系统范围和便捷。确定用户视图。</p>
-<h4 id="12-DBAS（-Database-Application-System）-实现与部署"><a href="#12-DBAS（-Database-Application-System）-实现与部署" class="headerlink" title="12.DBAS（ Database Application System） 实现与部署"></a>12.DBAS（ Database Application System） 实现与部署</h4><p>(1) 建立数据库结构。</p>
-<p>(2) 数据加载。</p>
-<p>(3) 事务和应用程序的编码及测试。</p>
-<p>(4) 系统集成、测试与试运行。</p>
-<p>(5) 系统部署。</p>
-<p><em>此阶段主要是系统编码和测试，针对系统的功能和性能不足对系统就行升级是运行维护阶段工作</em></p>
-<h4 id="13-操作可行性研究"><a href="#13-操作可行性研究" class="headerlink" title="13.操作可行性研究"></a>13.操作可行性研究</h4><p>论证是否具备 DBAS 开发所需的各类人员资源（项目管理人员、数据库系统分析员、应用编程人员等）、软件资源、硬件资源和工作环境等，以及为支持 DBAS 开发如何去改进加强这几方面资源。</p>
-<h4 id="14-项目规划包括以下工作内容："><a href="#14-项目规划包括以下工作内容：" class="headerlink" title="14.项目规划包括以下工作内容："></a>14.项目规划包括以下工作内容：</h4><p>①确定项目的<strong>目标和范围</strong>，根据系统规划与定义的工作内容，具体说明项目的最终产品以及期望的时间、成本和质量目标。<br>②根据 DBAS 软件开发模型，分解和定义整个项目包括的<strong>工作活动和任务</strong>。<br>③估算完成该项目的<strong>规模及所需各种资源</strong>。<br>④制定合理的 DBAS 项目计划，包括<strong>进度、成本、质量等方面的预测和控制</strong>方案。</p>
-<h4 id="15-数据库应用系统的生命周期"><a href="#15-数据库应用系统的生命周期" class="headerlink" title="15.数据库应用系统的生命周期"></a>15.数据库应用系统的生命周期</h4><p>包括：项目规划、需求分析<a href="#needanalyze"></a>、系统设计、实现与部署和运行与维护五个基本活动。</p>
-<h4 id="16-系统设计阶段"><a href="#16-系统设计阶段" class="headerlink" title="16.系统设计阶段"></a>16.系统设计阶段</h4><p>分为概念设计、逻辑设计、物理设计</p>
-<ul>
-<li>概念设计是整个数据库设计的关键，它通过对用户需求进行综合、归纳与抽象，形成一个<strong>独立于具体 DBMS 的概念模型</strong>。</li>
-<li>逻辑设计是将概念结构转换为<strong>某个 DBMS 所支持的数据模型</strong>，并对其进行优化。</li>
-<li>物理设计是为逻辑数据模型选取一个最适合应用环境的物理结构。</li>
-</ul>
-<h4 id="17-视图"><a href="#17-视图" class="headerlink" title="17.视图"></a>17.视图</h4><p>视图是从一个或几个基本表（或视图）中导出的虚表，数据库中只存放了视图的定义，不存放视图对应的数据。它是原始数据的一个变换，<strong>是查看表中数据的另外一种方式</strong>。可以将视图看成是一个移动的窗口，通过它可以看到感兴趣的数据。从另一个数据库或多个实际表中，这些表的数据存放在数据库中。那些用于产生视图的基础表视图的基表。一个视图也可以从另一个视图中产生。</p>
-<p><strong>视图的特点体现在三个方面：</strong></p>
-<p>①简单性，看到的就是需要的。视图不仅可以简化用户对数据的理解，也可以简化对它们的操作。那些被经常使用的查询可以被定义为视图，从而使得用户不必为以后的操作每次指定全部的条件。</p>
-<p>②安全性，通过视图用户只能查询和修改他们所能见到的数据。数据库中的其它数据则既看不见也取不到。</p>
-<p>③逻辑数据独立性，视图可帮助用户屏蔽真实表结构变化带来的影响。</p>
-<p><strong>根据视图的特点可以达到以下的几点作用</strong>：</p>
-<p>①简化数据查询语句。</p>
-<p>②使用户从多角度看待同一数据。</p>
-<p>③提高数据安全性。</p>
-<p>④提供了一定程度的逻辑独立性。</p>
-<h4 id="18-数据库概念设计"><a href="#18-数据库概念设计" class="headerlink" title="18.数据库概念设计"></a>18.数据库概念设计<a id="conceptualdesign"></a></h4><p>目标：</p>
-<ol>
-<li>定义和描述应用领域涉及的数据范围；</li>
-<li>获取应用领域或问题域的信息模型；</li>
-<li>描述清楚数据的属性特征；</li>
-<li>描述清楚数据之间的关系；</li>
-<li>定义和描述数据的约束；</li>
-<li>说明数据的安全性要求；</li>
-<li>支持用户的各种数据处理需求；</li>
-<li>保证信息模型方便地转换成数据库逻辑结构（数据库模式），同时也便于用户理解。</li>
-</ol>
-<h4 id="19-数据库性能优化"><a href="#19-数据库性能优化" class="headerlink" title="19.数据库性能优化"></a>19.数据库性能优化</h4><p>数据库运行环境、数据库参数调整、模式调整（对表进行规范化以减少更新操作的代价）、数据库存储优化和查询优化（删除基数比较小的列上的索引以减少维护开销）进行操作。</p>
-<h4 id="20-数据库应用系统升级"><a href="#20-数据库应用系统升级" class="headerlink" title="20.数据库应用系统升级"></a>20.数据库应用系统升级</h4><p>升级DBMS版本、修改程序以适应新需求、改变数据库应用系统体系结构等。</p>
-<h4 id="21-DBAS日常维护"><a href="#21-DBAS日常维护" class="headerlink" title="21.DBAS日常维护"></a>21.DBAS日常维护</h4><p>包括：备份与恢复、完整性维护、安全性维护、存储空间管理和并发控制。</p>
-<h4 id="22-数据库运行管理与维护"><a href="#22-数据库运行管理与维护" class="headerlink" title="22.数据库运行管理与维护"></a>22.数据库运行管理与维护</h4><p>主要工作内容包括日常维护、系统监控与分析、系统性能优化调整、系统进化（升级）等工作。</p>
-<p>数据库性能优化调整一般从查询调整与优化、索引调整、事务调整、模式调整、参数调整、硬件调整与升级和应用程序优化等方面考虑。</p>
-<p>将数据库存储介质由 RAID 5 改为 RAID 1以满足越来越多的写操作需求，属于硬件调整与升级，提高了数据库的性能。（RAID是一种能够把多个物理磁盘组合成一个逻辑单元的技术，以提高磁盘的性能和可靠性，现已被广泛应用在磁盘阵列中。）</p>
-<h4 id="23-DBAS设计"><a href="#23-DBAS设计" class="headerlink" title="23.DBAS设计"></a>23.DBAS设计</h4><ul>
-<li>概念设计：数据库概念模型设计和系统总体设计</li>
-<li>逻辑设计：逻辑设计包括数据库逻辑结构设计、应用程序概要设计和事务概要设计</li>
-<li>物理设计：数据库物理结构设计、数据库事务详细设计和应用程序详细设计。数据库物理设计主要包括数据库逻辑模式调整、文件组织与存取设计、数据分布设计、安全模式设计、确定系统配置、物理模式评估等环节</li>
-</ul>
-<h4 id="24-基准程序"><a href="#24-基准程序" class="headerlink" title="24.基准程序"></a>24.基准程序</h4><p>是用来测量计算机处理速度的一种实用程序，以便于被测量的计算机性能可以与运行相同程序的其他计算机性能进行比较。基准程序测试结果直接反映出计算机系统各部分完成各种作业的速度，从而对系统做出有针对性的评估。因此，基准程序评估是对系统性能进行评估的一种方法，属于数据库应用系统运行管理与维护中监控与分析功能。</p>
-<h4 id="25-需求分析阶段"><a href="#25-需求分析阶段" class="headerlink" title="25.需求分析阶段"></a>25.需求分析阶段</h4><p>需求分析阶段得到的需求规范说明文档，分析辨识需要组织存储在数据库中的各类应用领域数据对象的特征及其相互关联关系，并采用概念数据模型表示出来，得到独立于具体 DBMS 的数据库概念模型。</p>
-<p>这个阶段数据库管理系统还没有应用，因此数据库管理员（DBA）不需要参与。</p>
-<h4 id="26-关系模型与关系"><a href="#26-关系模型与关系" class="headerlink" title="26.关系模型与关系"></a>26.关系模型与关系</h4><p><strong>关系模型</strong>描述的关系是静态结构，它是静态的、稳定的</p>
-<p><strong>关系</strong>是动态、随用户对数据库的操作而变化的。</p>
-<h4 id="27-存储管理器"><a href="#27-存储管理器" class="headerlink" title="27.存储管理器"></a>27.存储管理器</h4><p>存储管理器负责检查用户是否具有数据访问权限；为了提高数据访问效率，存储管理器会将部分内存用于数据缓冲，同时使用一定的算法对内存缓冲区中的数据块进行置换；存储管理器以事务方式管理用户对数据的访问，以确保数据库并发访问的正确性。</p>
-<h4 id="28-数据库空间管理"><a href="#28-数据库空间管理" class="headerlink" title="28.数据库空间管理"></a>28.数据库空间管理</h4><p>随着数据库的运行，数据库中的数据会不断改变，为了确保数据库的正常运行，需要数据库管理员对数据空间使用情况进行分析和预测。其中的重点是监控空间增长较快的表，对这些表的监控就能达到对数据库空间的增长的良好预测。当数据库所在的空间已经不能满足需求时，可以考虑将一些不再使用的数据转移到其他存储设备上。不同的数据库管理系统有着不同的逻辑实现结构，因此数据库空间管理办法随数据库管理系统不同而不同。</p>
-<h4 id="29-概念模型中的”属性“"><a href="#29-概念模型中的”属性“" class="headerlink" title="29.概念模型中的”属性“"></a>29.概念模型中的”属性“</h4><p>一个属性的值必须属于唯一的域，域在这里相当于数据类型的自己，属性的取值必须为同一域。（例如一个人实体可以有姓名、年龄、性别等属性）</p>
-<h4 id="30-数据库的逻辑结构设计"><a href="#30-数据库的逻辑结构设计" class="headerlink" title="30.数据库的逻辑结构设计"></a>30.数据库的逻辑结构设计</h4><p>是指从数据库概念模型出发，设计表示为逻辑模式的数据库逻辑结构，数据库逻辑设计的主要步骤包括：ER图转换为初始关系模式、对初始关系模式进行优化等。</p>
-<h4 id="31-可行性分析"><a href="#31-可行性分析" class="headerlink" title="31.可行性分析"></a>31.可行性分析</h4><p>（1）经济可行性研究<br>对项目进行成本效益分析，估算项目开发成本，评估项目经济效益、社会效益和利润，在项目成本和收益间进行合理权衡，并分析项目对其产品或利润的影响。<br>（2）操作可行性研究<br>论证是否具备 DBAS 开发所需的各类人员资源（项目管理人员、数据库系统分析员、应用编程人员等）、软件资源、硬件资源和工作环境等，以及为支持 DBAS 开发如何去改进加强这几方面资源。<br>（3）技术可行性研究<br>根据用户提出的系统功能、性能及实现系统的各项约束条件，对系统软硬件和技术方案作出评估和选择建议。<br>（4）开发方案选择的目标<br>提出并评价实现系统的各种开发方案，从中选出一种适用于 DBAS 软件的开发方案。</p>
-<h4 id="32-DBAS生命周期中的规划与分析"><a href="#32-DBAS生命周期中的规划与分析" class="headerlink" title="32.DBAS生命周期中的规划与分析"></a>32.DBAS生命周期中的规划与分析</h4><p>工作内容包括：系统规划与定义、项目规划和可行性分析。</p>
-<h4 id="33-数据分布设计——垂直划分"><a href="#33-数据分布设计——垂直划分" class="headerlink" title="33.数据分布设计——垂直划分"></a>33.数据分布设计——垂直划分</h4><p>垂直划分是将一张基本表划分为多张子表，每张子表包含的属性是原基本表的子集，且必须包含基本表的主键。（即每张子表必须包含基本表的主码、主键、主关键字、primary key）</p>
-<h4 id="34-从功能角度-DBAS-系统通常可以划分为四个层次实现"><a href="#34-从功能角度-DBAS-系统通常可以划分为四个层次实现" class="headerlink" title="34.从功能角度 DBAS 系统通常可以划分为四个层次实现"></a>34.从功能角度 DBAS 系统通常可以划分为四个层次实现</h4><p>①表示层：负责所有与用户交互的功能，用户对数据库应用系统的最直观感受均在这层实现。<br>②业务逻辑层：负责根据业务逻辑需要将表示层获取的数据进行组织后，传递给数据访问层，或将数据访问层获取的数据进行相应的加工处理后，传送给表示层用于展示。<br>③数据访问层：负责与 DBMS 系统进行交互，提取或存入应用系统所需的数据。<br>④数据持久层：负责保存和管理应用系统数据。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%B8%80%E7%AB%A0/" data-id="cmf8d3oat0000ws7888pl6z7h" data-title="三级数据库第一章" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/09/06/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2025-09-06T06:57:09.350Z" itemprop="datePublished">2025-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/09/06/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/09/06/hello-world/" data-id="cmf8b7cli0000qg78hydxfnrr" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%B8%89%E7%AB%A0/">三级数据库第三章</a>
-          </li>
-        
-          <li>
-            <a href="/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%BA%8C%E7%AB%A0/">三级数据库第二章</a>
-          </li>
-        
-          <li>
-            <a href="/2025/09/06/%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E4%B8%80%E7%AB%A0/">三级数据库第一章</a>
-          </li>
-        
-          <li>
-            <a href="/2025/09/06/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2025 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">4</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-09-07T13:51:27.335Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By michelmine1</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.0-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
